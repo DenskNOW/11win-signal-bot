@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Админка</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <h1>Пользователи</h1>
+    <canvas id="userChart" width="400" height="200"></canvas>
+    <script>
+      const ctx = document.getElementById('userChart').getContext('2d');
+      const chart = new Chart(ctx, {
+          type: 'bar',
+          data: {
+              labels: {{ stats.labels|safe }},
+              datasets: [{
+                  label: 'Регистрации',
+                  data: {{ stats.counts|safe }},
+                  borderWidth: 1
+              }]
+          },
+          options: {
+              scales: { y: { beginAtZero: true } }
+          }
+      });
+    </script>
+</body>
+</html>

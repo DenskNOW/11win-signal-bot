@@ -1,0 +1,13 @@
+@echo off
+echo [1/3] Активация виртуального окружения...
+call venv\Scripts\activate
+
+echo [2/3] Инициализация базы данных...
+python -c "from database.db import init_db; init_db()"
+
+echo [3/3] Добавление тестовых пользователей...
+python -m database.populate_test_users
+
+echo [✅] Запуск Flask панели...
+python web\app.py
+pause

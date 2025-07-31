@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Panel</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        table { width: 100%%; border-collapse: collapse; margin-bottom: 40px; }
+        th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+        form { margin-bottom: 20px; }
+        textarea { width: 100%%; height: 100px; }
+        input[type=submit] { padding: 10px 20px; }
+    </style>
+</head>
+<body>
+<h2>👨‍💼 Admin Panel — Users & Signals</h2>
+
+<h3>📩 Отправить сигнал всем с депозитом</h3>
+<form action="/send-signal" method="post">
+    <textarea name="signal_text" placeholder="Введите текст сигнала..."></textarea><br>
+    <input type="submit" value="Отправить сигнал">
+</form>
+
+<h3>🧑 Список пользователей</h3>
+<table>
+    <tr>
+        <th>Telegram ID</th>
+        <th>Username</th>
+        <th>Lang</th>
+        <th>Registered</th>
+        <th>Deposit</th>
+        <th>Created</th>
+    </tr>
+    {% for user in users %}
+    <tr>
+        <td>{{ user.telegram_id }}</td>
+        <td>{{ user.username or '' }}</td>
+        <td>{{ user.language }}</td>
+        <td>{{ '✅' if user.is_registered else '❌' }}</td>
+        <td>{{ '💰' if user.has_deposit else '—' }}</td>
+        <td>{{ user.created_at }}</td>
+    </tr>
+    {% endfor %}
+</table>
+</body>
+</html>

@@ -1,0 +1,8 @@
+
+aiogram==2.25.1
+aiohttp
+Flask
+python-i18n
+sqlalchemy
+
+python-dotenv
